@@ -1,5 +1,5 @@
 const callbacks={
-    have:(value)=>value?true:false,
+    have:(value)=>value!==undefined?true:false,
 }
 
 
