@@ -1,4 +1,17 @@
-function filterData(data,options) {
-    return data
+const callbacks={
+    have:(value)=>value?true:false,
 }
-module.exports=filterData;
+
+
+function filterData(data, options=[]) {
+  let result = [...data];
+  options.forEach((element) => {
+    result=result.filter((el) => {
+      if (element.type === "have") {
+        return callbacks["have"](el[element.name]);  
+      }
+    });
+  });
+  return result;
+}
+module.exports = filterData;
