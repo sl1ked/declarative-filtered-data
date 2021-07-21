@@ -12,5 +12,5 @@ test("filter is important options",()=>{
 test("double having filter",()=>{
     const data=[{id:1},{id:2},{id:3,img:'1',src:""},{id:4,img:'1',src:""}];
     const prop=[{name:"img",type:"have"},{name:"src",type:"have"},]
-    expect(filterData(data,prop)).toEqual([{id:3,img:'1'},{id:4,img:'1',src:""}]);
+    expect(filterData(data,prop)).toEqual([{id:3,img:'1',src:""},{id:4,img:'1',src:""}]);
 });
