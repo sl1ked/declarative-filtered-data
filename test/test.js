@@ -25,19 +25,6 @@ test("double having filter", () => {
     { id: 4, img: "1", src: "" },
   ]);
 });
-test("include values filter", () => {
-  const data = [
-    { id: 1 },
-    { id: 2, img: "3" },
-    { id: 3, img: ["1", "3"], src: "" },
-    { id: 4, img: ["1", "2"], src: "" },
-  ];
-  const prop = [{ name: "img", type: "includes", value: "1" }];
-  expect(filterData(data, prop)).toEqual([
-    { id: 3, img: ["1", "3"], src: "" },
-    { id: 4, img: ["1", "2"], src: "" },
-  ]);
-});
 test("include values filter with not array's value", () => {
   const data = [
     { id: 1 },
