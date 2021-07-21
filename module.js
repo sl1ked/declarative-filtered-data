@@ -1,13 +1,27 @@
+const isArray = (el) => Array.isArray(el);
 const callbacks = {
   have: (value) => (value !== undefined ? true : false),
-  includes: (value, range) => {
+  includesStrict: (value, range) => {
+    if (!isArray(value)) {
+        value = [value];
+      }
+      if (!isArray(range)) {
+        range = [range];
+      }
     if (Array.isArray(range) && Array.isArray(value)) {
       return value.every((el) => range.includes(el));
     }
-    if (Array.isArray(range)) {
-      return range.includes(value);
+  },
+  includesNoStrict: (value, range) => {
+    if (!isArray(value)) {
+      value = [value];
     }
-    return range === value;
+    if (!isArray(range)) {
+      range = [range];
+    }
+    if (Array.isArray(range) && Array.isArray(value)) {
+      return value.some((el) => range.includes(el));
+    }
   },
 };
 
@@ -19,7 +33,10 @@ function filterData(data, options = []) {
         return callbacks["have"](el[element.name]);
       }
       if (element.type === "includes") {
-        return callbacks["includes"](element.value, el[element.name]);
+        if (element.strictMode) {
+          return callbacks["includesStrict"](element.value, el[element.name]);
+        }
+        return callbacks["includesNoStrict"](element.value, el[element.name]);
       }
     });
   });
