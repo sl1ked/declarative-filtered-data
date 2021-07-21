@@ -1,4 +1,4 @@
-import filterData from "../module.js";
+const filterData=require("../module.js");
 
 test("first test:return isn't data",()=>{
     const data=1;

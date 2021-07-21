@@ -1,4 +1,4 @@
 function filterData(data,options) {
-    
+    return data
 }
-export default filterData;
+module.exports=filterData;
