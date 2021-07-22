@@ -10,6 +10,8 @@ test("check commad only", () => {
     const prop = [
       { name: "img", type: "custom", callback:(el)=>el%2},
     ];
-    expect(filterData(data, prop)).toEqual([{ id: 4, img: 1, src: "" }]);
+    expect(filterData(data, prop)).toEqual([
+        { id: 3, img: [1, 2], src: "" },
+        { id: 4, img: 1, src: "" }]);
   });
   
