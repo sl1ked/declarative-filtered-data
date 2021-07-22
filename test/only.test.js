@@ -1,4 +1,6 @@
-test("check type of checking values", () => {
+const filterData = require("../module.js");
+
+test("check commad only", () => {
     const data = [
       { id: 1 },
       { id: 2, img: "1" },
@@ -6,7 +8,7 @@ test("check type of checking values", () => {
       { id: 4, img: 1, src: "" },
     ];
     const prop = [
-      { name: "img", type: "only", value: 1, strictMode: true },
+      { name: "img", type: "only", value: 1},
     ];
     expect(filterData(data, prop)).toEqual([{ id: 4, img: 1, src: "" }]);
   });
