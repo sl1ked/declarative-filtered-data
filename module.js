@@ -18,9 +18,8 @@ function filterData(data, options = []) {
         return callbacks["only"](element.value,el[element.name]);
       }
       if (element.type === "custom") {
-        return callbacks["custom"](el[element.name],element.callback);
+        return element.callback(el[element.name])
       }
-
     });
   });
   return result;

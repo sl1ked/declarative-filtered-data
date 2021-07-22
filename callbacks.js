@@ -27,6 +27,5 @@ const callbacks = {
     only:(value,list)=>{
         return list===value
     },
-    custom:(value,callback)=>callback(value),
   };
 module.exports=callbacks  
