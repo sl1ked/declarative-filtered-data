@@ -14,6 +14,9 @@ function filterData(data, options = []) {
         }
         return callbacks["includesNoStrict"](element.value, el[element.name]);
       }
+      if (element.type === "only") {
+        return callbacks["only"](element.value,el[element.name]);
+      }
     });
   });
   return result;
