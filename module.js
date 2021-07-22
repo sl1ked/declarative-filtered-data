@@ -7,7 +7,7 @@ function filterData(data, options = []) {
     result = result.filter((el) => {
       const elementValue=deepObjectProperty(el,element.name);
       if (element.type === "have") {
-        return callbacks["have"](el[element.name]);
+        return callbacks["have"](elementValue);
       }
       if (element.type === "includes") {
         if (element.strictMode) {
