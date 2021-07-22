@@ -13,7 +13,7 @@ test("check commad only", () => {
     { id: 4, img: 1, src: "" },
   ]);
 });
-test("check commad only", () => {
+test("check commad only with this", () => {
   const data = [
     { id: 2, img: ["1"] },
     { id: 3, img: [1, 2], src: "" },
@@ -34,7 +34,12 @@ test("check commad only", () => {
     { id: 4, img: [1], src: "" },
   ]);
 });
-test("check commad only", () => {
+
+/** 
+ *  if you wont to use arrow function with options value add arguments $value. 
+ *  You can put object in value for create more variable.
+ **/
+test("check commad only with arrow function", () => {
     const data = [
       { id: 2, img: ["1"] },
       { id: 3, img: [1, 2], src: "" },
@@ -44,7 +49,7 @@ test("check commad only", () => {
       {
         name: "img",
         type: "custom",
-        callback: (el) =>el.includes(this.value),
+        callback: (el,$value) =>el.includes($value),
         value: 1,
       },
     ];
