@@ -17,6 +17,10 @@ function filterData(data, options = []) {
       if (element.type === "only") {
         return callbacks["only"](element.value,el[element.name]);
       }
+      if (element.type === "custom") {
+        const $value=element.value;
+        return element.callback(el[element.name],$value)
+      }
     });
   });
   return result;
