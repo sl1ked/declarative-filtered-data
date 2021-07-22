@@ -58,3 +58,23 @@ test("check commad only with arrow function", () => {
       { id: 4, img: [1], src: "" },
     ]);
   });
+
+  test("checkdeep property work", () => {
+    const data = [
+      { id: 2, img:{value: ["1"]} },
+      { id: 3, img:{value: [1, 2]}, src: "" },
+      { id: 4, img:{value: [1]}, src: "" },
+    ];
+    const prop = [
+      {
+        name: "img.value",
+        type: "custom",
+        callback: (el,$value) =>el.includes($value),
+        value: 1,
+      },
+    ];
+    expect(filterData(data, prop)).toEqual([
+      { id: 3, img:{value: [1, 2]}, src: "" },
+      { id: 4, img:{value: [1]}, src: "" },
+    ]);
+  });

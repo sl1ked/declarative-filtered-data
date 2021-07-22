@@ -16,4 +16,18 @@ test("include values filter with not array's value not  strictMode", () => {
       { id: 4, img: ["1", "2"], src: "" },
     ]);
   });
-  
+  test("deep includes", () => {
+    const data = [
+      { id: 1 },
+      { id: 2, img: "1" },
+      { id: 3, img:{ value: ["1", "3"]}, src: "" },
+      { id: 4, img: { value: ["1", "2"] }, src: "" },
+    ];
+    const prop = [
+      { name: "img.value", type: "includes", value: ["1", "2"], strictMode: false },
+    ];
+    expect(filterData(data, prop)).toEqual([
+      { id: 3, img:{ value: ["1", "3"]}, src: "" },
+      { id: 4, img: { value: ["1", "2"] }, src: "" },
+    ]);
+  });
