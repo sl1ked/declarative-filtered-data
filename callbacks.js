@@ -6,10 +6,10 @@ const callbacks = {
       if (!isArray(value)) {
           value = [value];
         }
-        if (!isArray(range)) {
-          range = [range];
-        }
-      if (Array.isArray(range) && Array.isArray(value)) {
+      if (!isArray(range)) {
+        range = [range];
+      }
+      if (isArray(range) && isArray(value)) {
         return value.every((el) => range.includes(el));
       }
     },
@@ -20,7 +20,7 @@ const callbacks = {
       if (!isArray(range)) {
         range = [range];
       }
-      if (Array.isArray(range) && Array.isArray(value)) {
+      if (isArray(range) && isArray(value)) {
         return value.some((el) => range.includes(el));
       }
     },
