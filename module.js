@@ -9,7 +9,7 @@ function filterData(data, options = []) {
   options.forEach((filterItem) => {
     result = result.filter((el) => {
       const curentValue = deepObjectProperty(el, filterItem.name);
-      const filterType = filterType;
+      const filterType = filterItem.type;
       if (filterType === "have") {
         return callbacks["have"](curentValue);
       }
