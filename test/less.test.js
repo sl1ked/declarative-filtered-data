@@ -2,26 +2,26 @@ const filterData = require("../module.js");
 
 test("less option with number", () => {
   const data = [{ id: 1 }, { id: 2 }, { id: 3, img: "1" }];
-  const prop = [{ name: "id", type: "less",value:2 }];
+  const prop = [{ name: "id", type: "less",value:2 ,strictMode:true}];
   expect(filterData(data, prop)).toEqual([{ id: 1 }]);
 });
 test("less option with string", () => {
     const data = [{ id: "a" }, { id: "b" }, { id: "d", img: "1" }];
-    const prop = [{ name: "id", type: "less",value:"c" }];
+    const prop = [{ name: "id", type: "less",value:"c", strictMode:true}];
     expect(filterData(data, prop)).toEqual([{ id: "a" }, { id: "b" }]);
   });
-  test("less option with different variable", () => {
+  test("less option with different variable ", () => {
     const data = [{ id: "1" }, { id: 1 }, { id: 2, img: "1" }];
-    const prop = [{ name: "id", type: "less",value:3 }];
+    const prop = [{ name: "id", type: "less",value:3 ,strictMode:true}];
     expect(filterData(data, prop)).toEqual([{ id: 1 }, { id: 2,img:"1" }]);
   });
-  test("less option with different variable", () => {
+  test("less option with different variable Unstrict mode", () => {
     const data = [{ id: 1 }, { id: 2 }, { id: 3}];
-    const prop = [{ name: "id", type: "less",value:2, strict:false}];
+    const prop = [{ name: "id", type: "less",value:2, strictMode:false}];
     expect(filterData(data, prop)).toEqual([{ id: 1 }, { id: 2}]);
   });
-  test("less option with different variable", () => {
+  test("less option with different variable strict mode", () => {
     const data = [{ id: 1 }, { id: 2 }, { id: 3}];
-    const prop = [{ name: "id", type: "less",value:2, strict:true}];
+    const prop = [{ name: "id", type: "less",value:2, strictMode:true}];
     expect(filterData(data, prop)).toEqual([{ id: 1 }]);
   });
