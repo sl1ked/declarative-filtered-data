@@ -27,6 +27,7 @@ const callbacks = {
     only:(value,list)=>{
         return list===value
     },
-    less:(curent,value)=>curent<value
+    strictLess:(curent,value)=>curent<value,
+    unStrictLess:(curent,value)=>curent<=value
   };
 module.exports=callbacks  
