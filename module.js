@@ -15,10 +15,10 @@ function filterData(data, options = []) {
       }
 
       if (filterType === "includes") {
-        if (filterItem.strictMode) {
-          return callbacks["includesStrict"](filterType, curentValue);
+        if (filterItem.strictMode === false) {
+          return callbacks["includesNoStrict"](filterItem.value, curentValue);
         }
-        return callbacks["includesNoStrict"](filterItem.value, curentValue);
+        return callbacks["includesStrict"](filterItem.value, curentValue);
       }
 
       if (filterType === "only") {
@@ -32,7 +32,7 @@ function filterData(data, options = []) {
         if (!(typeof curentValue === typeof filterItem.value)) {
           return false;
         }
-        if (filterItem.strictMode===false) {
+        if (filterItem.strictMode === false) {
           return callbacks["unStrictLess"](curentValue, filterItem.value);
         }
         return callbacks["strictLess"](curentValue, filterItem.value);
