@@ -6,31 +6,32 @@ function filterData(data, options = []) {
   if (isObject(options)) {
     options = [options];
   }
-  options.forEach((element) => {
+  options.forEach((filterItem) => {
     result = result.filter((el) => {
-      const curentValue = deepObjectProperty(el, element.name);
-
-      if (element.type === "have") {
+      const curentValue = deepObjectProperty(el, filterItem.name);
+      const filterType=filterType;
+      if (filterType === "have") {
         return callbacks["have"](curentValue);
       }
 
-      if (element.type === "includes") {
-        if (element.strictMode) {
-          return callbacks["includesStrict"](element.value, curentValue);
+      if (filterType === "includes") {
+        if (filterItem.strictMode) {
+          return callbacks["includesStrict"](filterType, curentValue);
         }
-        return callbacks["includesNoStrict"](element.value, curentValue);
+        return callbacks["includesNoStrict"](filterItem.value, curentValue);
       }
 
-      if (element.type === "only") {
-        return callbacks["only"](element.value, curentValue);
+      if (filterType === "only") {
+        return callbacks["only"](filterItem.value, curentValue);
       }
-      if (element.type === "custom") {
-        const $value = element.value;
-        return element.callback.call({ value: $value }, curentValue, $value);
+      if (filterType === "custom") {
+        const $value = filterItem.value;
+        return filterItem.callback.call({ value: $value }, curentValue, $value);
       }
-      if (element.type === "less") {
-        if(typeof curentValue===typeof element.value){
-          return callbacks["less"]( curentValue,element.value);
+      if (filterType === "less") {
+        if(typeof curentValue===typeof filterItem.value){
+          if(filterItem.strictMode)
+          return callbacks["less"]( curentValue,filterItem.value);
         }
         return false
       }
