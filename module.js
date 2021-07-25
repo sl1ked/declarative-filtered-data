@@ -29,11 +29,13 @@ function filterData(data, options = []) {
         return filterItem.callback.call({ value: $value }, curentValue, $value);
       }
       if (filterType === "less") {
-        if(typeof curentValue===typeof filterItem.value){
-          if(filterItem.strictMode)
-          return callbacks["less"]( curentValue,filterItem.value);
-        }
+        if (!(typeof curentValue===typeof filterItem.value)){
         return false
+        }
+        if(filterItem.strictMode){
+          return callbacks["strictLess"]( curentValue,filterItem.value);
+        }
+        return callbacks["unstrictLess"]( curentValue,filterItem.value);
       }
     });
   });
