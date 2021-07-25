@@ -46,6 +46,28 @@ function filterData(data, options = []) {
         }
         return callbacks["strictLarge"](curentValue, filterItem.value);
       }
+      if (filterType === "between") {
+        if (
+          !(
+            typeof curentValue === typeof filterItem.value.start &&
+            typeof filterItem.value.start === typeof filterItem.value.finish
+          )
+        ) {
+          return false;
+        }
+        const mode = {
+          start: filterItem?.strictMode?.start??true,
+          finish: filterItem?.strictMode?.finish??true,
+        };
+        const startType =
+          mode.start === false ? "unStrictLarge" : "strictLarge";
+        const finishType =
+          mode.finish === false ? "unStrictLess" : "strictLess";
+        return (
+          callbacks[startType](curentValue, filterItem.value.start) &&
+          callbacks[finishType](curentValue, filterItem.value.finish)
+        );
+      }
     });
   });
   return result;
