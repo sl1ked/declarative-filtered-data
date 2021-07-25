@@ -28,6 +28,12 @@ function filterData(data, options = []) {
         const $value = element.value;
         return element.callback.call({ value: $value }, curentValue, $value);
       }
+      if (element.type === "less") {
+        if(typeof curentValue===typeof element.value){
+          return callbacks["less"]( curentValue,element.value);
+        }
+        return false
+      }
     });
   });
   return result;
