@@ -37,6 +37,15 @@ function filterData(data, options = []) {
         }
         return callbacks["strictLess"](curentValue, filterItem.value);
       }
+      if (filterType === "large") {
+        if (!(typeof curentValue === typeof filterItem.value)) {
+          return false;
+        }
+        if (filterItem.strictMode === false) {
+          return callbacks["unStrictLarge"](curentValue, filterItem.value);
+        }
+        return callbacks["strictLarge"](curentValue, filterItem.value);
+      }
     });
   });
   return result;
