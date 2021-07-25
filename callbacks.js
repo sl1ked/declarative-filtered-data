@@ -28,6 +28,8 @@ const callbacks = {
         return list===value
     },
     strictLess:(curent,value)=>curent<value,
-    unStrictLess:(curent,value)=>curent<=value
+    unStrictLess:(curent,value)=>curent<=value,
+    strictLarge:(curent,value)=>curent>value,
+    unStrictLarge:(curent,value)=>curent>=value
   };
 module.exports=callbacks  
