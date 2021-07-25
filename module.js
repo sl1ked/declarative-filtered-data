@@ -32,10 +32,10 @@ function filterData(data, options = []) {
         if (!(typeof curentValue === typeof filterItem.value)) {
           return false;
         }
-        if (filterItem.strictMode) {
-          return callbacks["strictLess"](curentValue, filterItem.value);
+        if (filterItem.strictMode===false) {
+          return callbacks["unStrictLess"](curentValue, filterItem.value);
         }
-        return callbacks["unstrictLess"](curentValue, filterItem.value);
+        return callbacks["strictLess"](curentValue, filterItem.value);
       }
     });
   });
