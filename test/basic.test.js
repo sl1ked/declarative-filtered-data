@@ -20,3 +20,11 @@ test("check deep property", () => {
   expect(isObject(arr)).toBeFalsy();
   expect(isObject(fun)).toBeFalsy();
 });
+test("check deep property with array's item", () => {
+  const obj = { a: 1};
+  const arr = ["a",1];
+  const fun = ()=>1;
+  expect(isObject(obj)).toBeTruthy();
+  expect(isObject(arr)).toBeFalsy();
+  expect(isObject(fun)).toBeFalsy();
+});
