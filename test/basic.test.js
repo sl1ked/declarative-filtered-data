@@ -12,19 +12,7 @@ test("check deep property", () => {
   expect(deepObjectProperty(soloObj, "a")).toEqual(1);
   expect(deepObjectProperty(obj, "a.b")).toEqual({ c: 1 });
 });
-test("check deep property", () => {
-  const obj = { a: 1};
-  const arr = ["a",1];
-  const fun = ()=>1;
-  expect(isObject(obj)).toBeTruthy();
-  expect(isObject(arr)).toBeFalsy();
-  expect(isObject(fun)).toBeFalsy();
-});
 test("check deep property with array's item", () => {
-  const obj = { a: 1};
-  const arr = ["a",1];
-  const fun = ()=>1;
-  expect(isObject(obj)).toBeTruthy();
-  expect(isObject(arr)).toBeFalsy();
-  expect(isObject(fun)).toBeFalsy();
+  const obj = { a: [{a:{a:2}}]};
+  expect(deepObjectProperty(obj, "a[0].a")).toEqual({ a: 2 });
 });
