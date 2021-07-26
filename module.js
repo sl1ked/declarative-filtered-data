@@ -1,4 +1,4 @@
-const { isArray, isObject, deepObjectProperty } = require("./basic.js");
+const { isArray, isObject, getDeepObjectProperty } = require("./basic.js");
 const callbacks = require("./callbacks.js");
 
 function filterData(data, options = []) {
@@ -8,7 +8,7 @@ function filterData(data, options = []) {
   }
   options.forEach((filterItem) => {
     result = result.filter((el) => {
-      const curentValue = deepObjectProperty(el, filterItem.name);
+      const curentValue = getDeepObjectProperty(el, filterItem.name);
       const filterType = filterItem.type;
       if (filterType === "have") {
         return callbacks["have"](curentValue);
